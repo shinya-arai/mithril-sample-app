@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/1.1.6/mithril.js"></script>
+    <script>
+        var root = document.body;
+
+        m.render(root, 
+            m('main', [
+                m("h1", {class: 'title'}, "最初のMithrilアプリケーション"),
+                m('button', 'ボタン'),
+            ])
+        );
+
+        var Hello = {
+            view: function() {
+                return m('main', [
+                    m("h1", {class: 'title'}, "２つ目のMithrilアプリケーション"),
+                    m('button', 'ボタン'),
+                ])
+            }
+        }
+
+        var Splash = {
+            view: function() {
+                return m("a", {href: "#!/hello"}, "ようこそ")
+            }
+        }
+
+        var count = 0;
+
+        var Hello = {
+            view: function() {
+                return m('main', [
+                    m('h1', {class: 'title'}, '3つ目のMithrilアプリケーション'),
+                    m("button", {onclick: function() {count++}}, count + " クリック"),
+                ])
+            }
+        }
+
+        // m.mount(root, Hello)
+        m.route(root, "/splash", {
+            "/splash": Splash,
+            "/hello": Hello,
+        })
+    </script>
+</body>
+</html>
